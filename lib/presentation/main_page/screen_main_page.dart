@@ -9,15 +9,15 @@ import 'package:netflix/presentation/new_and_hot/screen_new_and_hot.dart';
 import 'package:netflix/presentation/search/screen_search.dart';
 
 class ScreenMainPage extends StatelessWidget {
-   ScreenMainPage({Key? key}) : super(key: key);
+  ScreenMainPage({Key? key}) : super(key: key);
 
-   final _pages = [
-     ScreenHome(),
-     ScreenNewAndHot(),
-     ScreenFastLaugh(),
-     ScreenSearch(),
-     ScreenDownloads()
-   ];
+  final _pages = [
+    ScreenHome(),
+    ScreenNewAndHot(),
+    ScreenFastLaugh(),
+    ScreenSearch(),
+    ScreenDownloads()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,9 @@ class ScreenMainPage extends StatelessWidget {
       body: SafeArea(
         child: ValueListenableBuilder(
           valueListenable: indexChangeNotifier,
-          builder: (context,int index, _) {
-           return _pages[index];
-        },
-
+          builder: (context, int index, _) {
+            return _pages[index];
+          },
         ),
       ),
       bottomNavigationBar: BottomNavigationWidget(),

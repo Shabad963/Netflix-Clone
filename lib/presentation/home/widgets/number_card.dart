@@ -4,8 +4,9 @@ import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
 
 class NumberCard extends StatelessWidget {
-  const NumberCard({Key? key,
-  required this.index,
+  const NumberCard({
+    Key? key,
+    required this.index,
   }) : super(key: key);
 
   final int index;
@@ -18,7 +19,8 @@ class NumberCard extends StatelessWidget {
           children: [
             SizedBox(
               width: 40,
-              height: 200,),
+              height: 200,
+            ),
             Container(
               width: 130,
               height: 200,
@@ -40,14 +42,16 @@ class NumberCard extends StatelessWidget {
           child: BorderedText(
             strokeWidth: 10.0,
             strokeColor: kWhiteColor,
-            child: Text("${index + 1}",
+            child: Text(
+              "${index + 1}",
               style: const TextStyle(
-                  fontSize: 140,
-                  color: kBlackColor,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.none,
-              decorationColor: Colors.black,
-              ),),
+                fontSize: 140,
+                color: kBlackColor,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.none,
+                decorationColor: Colors.black,
+              ),
+            ),
           ),
         )
       ],

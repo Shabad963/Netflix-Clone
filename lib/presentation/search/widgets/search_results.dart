@@ -1,11 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/search/search_bloc.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/search/widgets/title.dart';
-
-const imageUrl =
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg";
-
 
 class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({Key? key}) : super(key: key);
@@ -17,33 +14,40 @@ class SearchResultWidget extends StatelessWidget {
       children: [
         const SearchTextTitle(title: "Movies & TV"),
         kHeight,
-        Expanded(
-            child: GridView.count(
+        Expanded(child: BlocBuilder<SearchBloc, SearchState>(
+          builder: (context, state) {
+            return GridView.count(
               shrinkWrap: true,
-                crossAxisCount: 3,
+              crossAxisCount: 3,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
               childAspectRatio: 1 / 1.4,
               children: List.generate(
-                20, (index) {
-                return  MainCard();
-              },
+                20,
+                (index) {
+                  final movie = state.searchResultList[index];
+                  return MainCard(
+                    imageUrl: movie.posterImageUrl,
+                  );
+                },
               ),
-              
-            ))
+            );
+          },
+        ))
       ],
     );
   }
 }
 
 class MainCard extends StatelessWidget {
-  const MainCard({Key? key}) : super(key: key);
+  final String imageUrl;
+  const MainCard({Key? key, required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: const DecorationImage(
+        image: DecorationImage(
           image: NetworkImage(imageUrl),
           fit: BoxFit.cover,
         ),
@@ -52,4 +56,3 @@ class MainCard extends StatelessWidget {
     );
   }
 }
-

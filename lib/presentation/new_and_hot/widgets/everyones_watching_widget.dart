@@ -4,10 +4,15 @@ import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflix/presentation/widgets/video_widgets.dart';
 
-
 class EveryonesWatchingWidget extends StatelessWidget {
+  final String posterPath;
+  final String movieName;
+  final String description;
   const EveryonesWatchingWidget({
     Key? key,
+    required this.posterPath,
+    required this.movieName,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -16,19 +21,24 @@ class EveryonesWatchingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
-        const Text("The Adam Project",
-          style: TextStyle(
+        Text(
+          movieName,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         kHeight,
-        const Text("After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self on a mission to save the future.",
-          style: TextStyle(
-              color: kGreyColor
-          ),),
+        Text(
+          description,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(color: kGreyColor),
+        ),
         kHeight50,
-        const VideoWidget(),
+        VideoWidget(
+          url: posterPath,
+        ),
         kHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -53,8 +63,9 @@ class EveryonesWatchingWidget extends StatelessWidget {
               iconSize: 25,
               textSize: 16,
             ),
-          ],)
-      ],);
+          ],
+        )
+      ],
+    );
   }
 }
-

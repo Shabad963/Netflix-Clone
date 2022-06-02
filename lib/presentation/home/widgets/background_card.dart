@@ -9,17 +9,17 @@ class BackgroundCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    return Stack(
       children: [
         Container(
           width: double.infinity,
           height: 600,
-          decoration: const  BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    kMainImage,
-                ),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                kMainImage,
               ),
+            ),
           ),
         ),
         Positioned(
@@ -38,7 +38,8 @@ class BackgroundCard extends StatelessWidget {
                 _PlayButton(),
                 const CustomButtonWidget(
                   icon: Icons.info,
-                  title: "Info",)
+                  title: "Info",
+                )
               ],
             ),
           ),
@@ -46,24 +47,23 @@ class BackgroundCard extends StatelessWidget {
       ],
     );
   }
+
   TextButton _PlayButton() {
     return TextButton.icon(
       onPressed: () {},
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(kWhiteColor),
       ),
-      icon: Icon(Icons.play_arrow,
+      icon: Icon(
+        Icons.play_arrow,
         size: 25,
         color: kBlackColor,
       ),
-      label:const Padding(
+      label: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Text(
           "Play",
-          style: TextStyle(
-              fontSize: 20,
-              color: kBlackColor
-          ),
+          style: TextStyle(fontSize: 20, color: kBlackColor),
         ),
       ),
     );

@@ -4,11 +4,22 @@ import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflix/presentation/widgets/video_widgets.dart';
 
-
 class ComingSoonWidget extends StatelessWidget {
+  final String id;
+  final String month;
+  final String day;
+  final String posterPath;
+  final String movieName;
+  final String description;
+
   const ComingSoonWidget({
     Key? key,
-
+    required this.id,
+    required this.month,
+    required this.day,
+    required this.posterPath,
+    required this.movieName,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -17,20 +28,22 @@ class ComingSoonWidget extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 50,
+          width: 70,
           height: 450,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text(
-                "FEB",style: TextStyle(
-                fontSize: 16,
-                color: kGreyColor,
-              ),),
+                month,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: kGreyColor,
+                ),
+              ),
               Text(
-                "11",
-                style: TextStyle(
+                day,
+                style: const TextStyle(
                   fontSize: 30,
                   letterSpacing: 4,
                   fontWeight: FontWeight.bold,
@@ -40,57 +53,59 @@ class ComingSoonWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 310,
-          height: 500,
+          width: size.width - 80,
+          height: 480,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const VideoWidget(),
+              VideoWidget(url: posterPath),
               Row(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("The Adam Project",
-                    style: TextStyle(
-                      fontSize: 30,
-                      letterSpacing: -2,
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Text(
+                      movieName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  const Spacer(),
-                  Row(
-                    children: const [
-                      CustomButtonWidget(
-                        icon: Icons.all_out_sharp,
-                        title: "Remind me",
-                        iconSize: 18,
-                        textSize: 10,
-                      ),
-                      kWidth,
-                      CustomButtonWidget(
-                        icon: Icons.info,
-                        title: "info",
-                        iconSize: 18,
-                        textSize: 10,
-                      ),
-                      kWidth,
-                    ],
-                  )
+                  const CustomButtonWidget(
+                    icon: Icons.all_out_sharp,
+                    title: "Remind me",
+                    iconSize: 18,
+                    textSize: 10,
+                  ),
+                  kWidth,
+                  const CustomButtonWidget(
+                    icon: Icons.info,
+                    title: "info",
+                    iconSize: 18,
+                    textSize: 10,
+                  ),
+                  kWidth
                 ],
               ),
               kHeight,
-              const Text("Coming on Friday"),
+              Text("Coming on $day $month"),
               kHeight,
-              const Text("The Adam Project",
-                style: TextStyle(
+              Text(
+                movieName,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               kHeight,
-              const Text("After accidentally crash-landing in 2022, time-traveling fighter pilot Adam Reed teams up with his 12-year-old self on a mission to save the future.",
-                style: TextStyle(
-                    color: kGreyColor
-                ),),
+              Text(
+                description,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: kGreyColor),
+              ),
             ],
           ),
         ),
@@ -98,4 +113,3 @@ class ComingSoonWidget extends StatelessWidget {
     );
   }
 }
-
